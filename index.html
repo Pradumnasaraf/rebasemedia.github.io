@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syntax Media</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #333; /* Dark background */
+            font-family: 'League Spartan', sans-serif;
+            flex-direction: column;
+            color: #e8e8e8;
+            text-align: center;
+        }
+        h1 {
+            font-size: 8rem; /* Default text size */
+            font-weight: 700;
+            color: #e8e8e8; /* Updated font color */
+            text-transform: lowercase;
+            letter-spacing: -0.05em; /* Reduced character spacing */
+            opacity: 0;
+            transform: translateY(40px); /* Increased movement */
+            animation: fadeInSlideUp 2s ease-out forwards; /* Longer and smoother transition */
+        }
+        p {
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: fadeInText 2s ease-out 2s forwards; /* Delay the appearance */
+        }
+        @keyframes fadeInSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px); /* Start further down */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem; /* Smaller text size for mobile */
+            }
+            p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>syntax media.</h1>
+    <p id="redirect-message">Redirecting to Syntax Media GitHub Org...</p>
+
+    <script>
+        // Wait for the animation to complete and then redirect
+        setTimeout(function() {
+            document.getElementById('redirect-message').style.opacity = 1;
+            setTimeout(function() {
+                window.location.href = 'https://github.com/mediasyntax';
+            }, 2500); // Wait for 3 seconds after message fade-in
+        }, 2500); // Wait for the h1 animation to complete (3s)
+    </script>
+</body>
+</html>
