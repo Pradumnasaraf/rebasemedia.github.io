@@ -1,6 +1,6 @@
-## mediasyntax.github.io (syntaxmedia.xyz)
+## rebasemedia.github.io
 
-This repo contains the source code for the [syntaxmedia.xyz](https://syntaxmedia.xyz) website. It's 100% open source and can be reused for your own projects.
+This repo contains the source code for the **rebase media** website. It's 100% open source and can be reused for your own projects.
 
 ### LICENSE
 
