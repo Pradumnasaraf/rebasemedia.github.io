@@ -177,31 +177,11 @@ nav {
 /* Hide scroll indicator on mobile */
 @media screen and (max-width: 768px) {
   nav {
-      justify-content: flex-end;
+      padding: 1rem 5%;
   }
-
+  
   .nav-links {
-      position: fixed;
-      right: 0;
-      height: 92vh;
-      top: 8vh;
-      background-color: var(--background);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 50%;
-      transform: translateX(100%);
-      transition: transform 0.5s ease-in;
-      padding-top: 2rem;
       gap: 2rem;
-  }
-
-  .nav-links li {
-      margin: 0;
-  }
-
-  .burger {
-      display: block;
   }
 
   .hero-content h1 {
@@ -229,6 +209,17 @@ nav {
   .scroll-arrow {
       width: 15px;
       height: 15px;
+  }
+}
+
+@keyframes navLinkFade {
+  from {
+      opacity: 0;
+      transform: translateX(50px);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(0);
   }
 }
 
@@ -505,15 +496,6 @@ footer {
 /* Mobile Menu */
 .burger {
   display: none;
-  cursor: pointer;
-}
-
-.burger div {
-  width: 25px;
-  height: 3px;
-  background-color: var(--text-color);
-  margin: 5px;
-  transition: all 0.3s ease;
 }
 
 /* Services section - add some padding to account for full-height hero */
