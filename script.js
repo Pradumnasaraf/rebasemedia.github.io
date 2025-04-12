@@ -5,7 +5,8 @@ const navLinks = document.querySelectorAll('.nav-links li');
 
 burger.addEventListener('click', () => {
     // Toggle Nav
-    nav.classList.toggle('nav-active');
+    nav.classList.toggle('active');
+    burger.classList.toggle('active');
     
     // Animate Links
     navLinks.forEach((link, index) => {
@@ -15,9 +16,14 @@ burger.addEventListener('click', () => {
             link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
         }
     });
-    
-    // Burger Animation
-    burger.classList.toggle('toggle');
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!nav.contains(e.target) && !burger.contains(e.target) && nav.classList.contains('active')) {
+        nav.classList.remove('active');
+        burger.classList.remove('active');
+    }
 });
 
 // Smooth Scrolling for Navigation Links
@@ -35,9 +41,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
             
             // Close mobile menu if open
-            if (nav.classList.contains('nav-active')) {
-                nav.classList.remove('nav-active');
-                burger.classList.remove('toggle');
+            if (nav.classList.contains('active')) {
+                nav.classList.remove('active');
+                burger.classList.remove('active');
             }
         }
     });
@@ -54,18 +60,22 @@ if (contactForm) {
     });
 }
 
-// Pricing Card Hover Effects
+// Responsive Pricing Card Hover Effects
 const pricingCards = document.querySelectorAll('.pricing-card');
 pricingCards.forEach(card => {
     card.addEventListener('mouseenter', () => {
-        if (!card.classList.contains('featured')) {
-            card.style.transform = 'scale(1.02)';
+        if (window.innerWidth > 768) { // Only apply hover effect on desktop
+            if (!card.classList.contains('featured')) {
+                card.style.transform = 'scale(1.02)';
+            }
         }
     });
     
     card.addEventListener('mouseleave', () => {
-        if (!card.classList.contains('featured')) {
-            card.style.transform = 'scale(1)';
+        if (window.innerWidth > 768) { // Only apply hover effect on desktop
+            if (!card.classList.contains('featured')) {
+                card.style.transform = 'scale(1)';
+            }
         }
     });
 });
@@ -112,4 +122,12 @@ window.addEventListener('scroll', () => {
         header.classList.add('scroll-up');
     }
     lastScroll = currentScroll;
+});
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+        nav.classList.remove('active');
+        burger.classList.remove('active');
+    }
 }); 

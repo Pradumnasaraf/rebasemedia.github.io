@@ -579,8 +579,8 @@ footer {
 
 /* Bundle Page Styles */
 .packages {
-  padding: 4rem 2rem;
-  max-width: 1200px;
+  padding: 8rem 2rem 4rem;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -589,13 +589,14 @@ footer {
   margin-bottom: 1rem;
   font-size: 2.5rem;
   color: var(--text-color);
-  padding-top: 2rem;
+  letter-spacing: -1px;
 }
 
 .pricing-note {
   text-align: center;
-  color: var(--text-secondary);
+  color: var(--light-text);
   margin-bottom: 3rem;
+  font-size: 1rem;
 }
 
 .packages-grid {
@@ -603,35 +604,52 @@ footer {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-bottom: 4rem;
-  justify-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
-.package-card,
-.quote-card {
+.package-card {
   background: var(--card-bg);
   padding: 2rem;
   border-radius: 4px;
   text-align: center;
   transition: all 0.3s ease;
-  box-shadow: none;
-  width: 100%;
-  max-width: 350px;
-  min-height: 300px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-between;
+  min-height: 300px;
 }
 
-.package-card:hover,
-.quote-card:hover {
+.package-card.highlight {
+  background: var(--card-bg);
+  transform: scale(1.02);
+  position: relative;
+  overflow: hidden;
+}
+
+.package-card.highlight::after {
+  content: 'Popular';
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--primary-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  border-radius: 4px 0 0 4px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.package-card.highlight:hover::after {
+  transform: translateX(0);
+}
+
+.package-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
-.package-card h3,
-.quote-card h3 {
+.package-card h3 {
   font-size: 1.3rem;
   margin-bottom: 1.5rem;
   color: var(--text-color);
@@ -639,33 +657,32 @@ footer {
   letter-spacing: -0.5px;
 }
 
-.package-card ul,
-.quote-card ul {
-  list-style: none;
-  margin-bottom: 2rem;
-  padding: 0;
-  flex-grow: 1;
+.price-label {
+  font-size: 1rem;
+  color: var(--light-text);
+  margin-bottom: 0.5rem;
 }
 
-.package-card ul li,
-.quote-card ul li {
+.price {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  letter-spacing: -1px;
+}
+
+.package-card ul {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.package-card ul li {
   margin-bottom: 0.5rem;
   color: var(--light-text);
   font-size: 1rem;
-  font-weight: 300;
 }
 
-.packages-grid,
-.quotes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  justify-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
+/* Conditions Section */
 .conditions {
   margin: 4rem 0;
 }
@@ -673,7 +690,9 @@ footer {
 .condition-section h2 {
   text-align: center;
   margin-bottom: 2rem;
-  color: var(--text-primary);
+  font-size: 2rem;
+  color: var(--text-color);
+  letter-spacing: -1px;
 }
 
 .condition-grid {
@@ -683,121 +702,126 @@ footer {
 }
 
 .condition-card {
-  background: var(--bg-secondary);
-  padding: 2rem;
-  border-radius: 10px;
-}
-
-.condition-card h3 {
-  color: var(--text-primary);
-  margin-bottom: 1rem;
-}
-
-.condition-card ul {
-  list-style: none;
-  padding: 0;
-}
-
-.condition-card ul li {
-  margin: 0.8rem 0;
-  color: var(--text-secondary);
-}
-
-.pricing-cta {
-  text-align: center;
-  margin-top: 3rem;
-}
-
-.contact-button {
-  display: inline-block;
-  padding: 1rem 2rem;
-  background: var(--text-color);
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.contact-button:hover {
-  background: var(--secondary-color);
-  transform: translateY(-2px);
-}
-
-@media (max-width: 768px) {
-  .packages {
-      padding: 2rem 1rem;
-  }
-
-  .packages h1 {
-      font-size: 2rem;
-  }
-
-  .price {
-      font-size: 2rem;
-  }
-}
-
-/* Update the quotes grid to match */
-.quotes {
-  background: var(--background);
-  padding: 5rem 1rem;
-}
-
-.quotes h2 {
-  text-align: center;
-  margin-bottom: 3rem;
-  font-size: 2.5rem;
-  font-weight: 500;
-  color: var(--text-color);
-  letter-spacing: -1px;
-}
-
-.quotes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  justify-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.quote-card {
   background: var(--card-bg);
   padding: 2rem;
   border-radius: 4px;
-  text-align: center;
-  transition: all 0.3s ease;
-  box-shadow: none;
 }
 
-.quote-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.quote-card h3 {
+.condition-card h3 {
   font-size: 1.3rem;
   margin-bottom: 1.5rem;
   color: var(--text-color);
   font-weight: 500;
-  letter-spacing: -0.5px;
 }
 
-.quote-card ul {
+.condition-card ul {
   list-style: none;
-  margin-bottom: 2rem;
-  padding: 0;
 }
 
-.quote-card ul li {
-  margin-bottom: 0.5rem;
+.condition-card ul li {
+  margin-bottom: 0.8rem;
   color: var(--light-text);
   font-size: 1rem;
-  font-weight: 300;
 }
 
-.section-spacer {
-  height: 4rem;
-  background: var(--background);
+/* Footer */
+footer {
+  background-color: var(--card-bg);
+  padding: 2rem 1rem;
+  text-align: center;
+  border-top: 1px solid #eaeaea;
+}
+
+.social-links {
+  margin-bottom: 1rem;
+}
+
+.social-links a {
+  color: var(--text-color);
+  margin: 0 1rem;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: var(--secondary-color);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+  .packages {
+      padding: 8rem 1.5rem 4rem;
+  }
+  
+  .packages h1 {
+      font-size: 2.2rem;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .packages {
+      padding: 7rem 1.5rem 3rem;
+  }
+  
+  .packages h1 {
+      font-size: 2rem;
+  }
+  
+  .price {
+      font-size: 2.2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  nav {
+      padding: 1rem 5%;
+  }
+  
+  .packages {
+      padding: 6rem 1rem 2rem;
+  }
+  
+  .packages h1 {
+      font-size: 1.8rem;
+  }
+  
+  .packages-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      margin: 0 auto 3rem;
+  }
+  
+  .package-card {
+      padding: 1.5rem;
+  }
+  
+  .condition-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      margin: 0 auto;
+  }
+  
+  .condition-card {
+      padding: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .packages h1 {
+      font-size: 1.5rem;
+  }
+  
+  .price {
+      font-size: 2rem;
+  }
+  
+  .package-card h3,
+  .condition-card h3 {
+      font-size: 1.2rem;
+  }
+  
+  .package-card ul li,
+  .condition-card ul li {
+      font-size: 0.9rem;
+  }
 }

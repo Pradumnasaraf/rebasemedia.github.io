@@ -136,6 +136,12 @@ nav {
     flex-direction: column;
     align-items: center;
     gap: 8px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-indicator:hover {
+    opacity: 1;
 }
 
 .scroll-arrow {
@@ -174,10 +180,42 @@ nav {
     }
 }
 
-/* Hide scroll indicator on mobile */
+/* Responsive Design Improvements */
+@media screen and (max-width: 1200px) {
+    .hero-content h1 {
+        font-size: 4rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.3rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media screen and (max-width: 768px) {
     nav {
-        justify-content: flex-end;
+        padding: 1rem 5%;
+    }
+
+    .logo {
+        font-size: 1.5rem;
     }
 
     .nav-links {
@@ -189,37 +227,79 @@ nav {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 50%;
+        width: 100%;
         transform: translateX(100%);
-        transition: transform 0.5s ease-in;
+        transition: transform 0.3s ease-in-out;
         padding-top: 2rem;
         gap: 2rem;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
     }
 
-    .nav-links li {
-        margin: 0;
+    .nav-links.active {
+        transform: translateX(0);
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+        padding: 0.5rem 1rem;
+        width: 100%;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+        background-color: var(--card-bg);
     }
 
     .burger {
         display: block;
+        z-index: 1001;
+    }
+    
+    .burger div {
+        width: 25px;
+        height: 3px;
+        background-color: var(--text-color);
+        margin: 5px;
+        transition: all 0.3s ease;
+    }
+    
+    .burger.active div:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .burger.active div:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .burger.active div:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
     }
 
     .hero-content h1 {
-        font-size: 3.5rem;
-        letter-spacing: -2px;
+        font-size: 2.5rem;
+        letter-spacing: -1px;
     }
 
     .hero-content p {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         padding: 0 1rem;
     }
 
-    .pricing-card.featured {
-        transform: none;
+    .services-grid,
+    .pricing-grid,
+    .packages-grid,
+    .stats-grid {
+        grid-template-columns: 1fr;
     }
 
-    .services-grid {
-        grid-template-columns: minmax(300px, 400px);
+    .pricing-card,
+    .package-card {
+        margin: 1rem 0;
+    }
+
+    .contact-form {
+        padding: 1rem;
     }
 
     .scroll-indicator {
@@ -232,9 +312,66 @@ nav {
     }
 }
 
-/* Animation for mobile menu */
-.nav-active {
-    transform: translateX(0%);
+@media screen and (max-width: 576px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .cta-button {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .service-card,
+    .pricing-card,
+    .package-card {
+        padding: 1.5rem;
+    }
+    
+    .stats-grid {
+        gap: 1rem;
+    }
+    
+    .stat-card {
+        padding: 1rem;
+    }
+}
+
+/* Mobile Menu Toggle */
+.burger {
+    display: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+@media screen and (max-width: 768px) {
+    .burger {
+        display: block;
+    }
+    
+    .burger div {
+        width: 25px;
+        height: 3px;
+        background-color: var(--text-color);
+        margin: 5px;
+        transition: all 0.3s ease;
+    }
+    
+    .burger.active div:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .burger.active div:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .burger.active div:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
 }
 
 /* Animations */
@@ -272,20 +409,27 @@ section h2 {
 /* Services */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(300px, 400px));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    justify-content: center;
-    max-width: 900px;
+    padding: 0 1rem;
+    max-width: 1400px;
     margin: 0 auto;
+    justify-items: center;
 }
 
 .service-card {
     background: var(--card-bg);
     padding: 2rem;
     border-radius: 4px;
-    box-shadow: none;
     text-align: center;
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 300px;
+    width: 100%;
+    max-width: 350px;
 }
 
 .service-card:hover {
@@ -294,23 +438,22 @@ section h2 {
 }
 
 .service-card i {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: var(--text-color);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .service-card h3 {
     font-size: 1.3rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
     color: var(--text-color);
     font-weight: 500;
-    letter-spacing: -0.5px;
 }
 
 .service-card p {
     color: var(--light-text);
     font-size: 1rem;
-    font-weight: 300;
+    line-height: 1.6;
 }
 
 /* Pricing */
@@ -500,20 +643,6 @@ footer {
 
 .social-links a:hover {
     color: var(--secondary-color);
-}
-
-/* Mobile Menu */
-.burger {
-    display: none;
-    cursor: pointer;
-}
-
-.burger div {
-    width: 25px;
-    height: 3px;
-    background-color: var(--text-color);
-    margin: 5px;
-    transition: all 0.3s ease;
 }
 
 /* Services section - add some padding to account for full-height hero */
@@ -800,4 +929,17 @@ footer {
 .section-spacer {
     height: 4rem;
     background: var(--background);
+}
+
+@media screen and (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .service-card {
+        min-height: auto;
+        padding: 1.5rem;
+    }
 }
