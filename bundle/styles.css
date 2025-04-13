@@ -608,7 +608,7 @@ footer {
   overflow: hidden;
 }
 
-.package-card.highlight::after {
+.package-card.highlight:not(:last-child)::after {
   content: 'Popular';
   position: absolute;
   top: 0;
@@ -622,7 +622,7 @@ footer {
   transition: transform 0.3s ease;
 }
 
-.package-card.highlight:hover::after {
+.package-card.highlight:not(:last-child):hover::after {
   transform: translateX(0);
 }
 
