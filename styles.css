@@ -598,22 +598,118 @@ section h2 {
 }
 
 /* Clients */
+.clients {
+    padding: 5rem 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.clients h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+    letter-spacing: -1px;
+}
+
 .clients-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    background: var(--card-bg);
+    border-radius: 4px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
     align-items: center;
-    justify-items: center;
 }
 
 .client-logo {
-    background: var(--card-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 2rem;
-    border-radius: 4px;
-    width: 100%;
-    text-align: center;
-    font-weight: 400;
-    color: var(--light-text);
+    transition: transform 0.3s ease;
+}
+
+.client-logo img {
+    max-width: 100%;
+    height: auto;
+    max-height: 150px;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+/* Tablet View */
+@media (max-width: 992px) {
+    .clients-grid {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0 1rem;
+        gap: 1.5rem;
+    }
+    
+    .client-logo {
+        padding: 1.5rem;
+    }
+    
+    .client-logo img {
+        max-height: 120px;
+    }
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+    .clients {
+        padding: 2rem 1rem;
+    }
+    
+    .clients h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .clients-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 1rem;
+        gap: 1rem;
+        margin: 0 1rem;
+    }
+    
+    .client-logo {
+        padding: 1.5rem;
+    }
+    
+    .client-logo img {
+        max-height: 100px;
+    }
+}
+
+/* Small Mobile View */
+@media (max-width: 480px) {
+    .clients {
+        padding: 1.5rem 1rem;
+    }
+    
+    .clients h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .clients-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+        gap: 1rem;
+        margin: 0 1rem;
+    }
+    
+    .client-logo {
+        padding: 1rem;
+    }
+    
+    .client-logo img {
+        max-height: 80px;
+    }
 }
 
 /* Contact Form */
