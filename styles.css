@@ -620,7 +620,7 @@ section h2 {
     background: var(--card-bg);
     border-radius: 4px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, auto);
     gap: 2rem;
     align-items: center;
@@ -635,7 +635,7 @@ section h2 {
 }
 
 .client-logo img {
-    max-width: 100%;
+    max-width: 75%;
     height: auto;
     max-height: 150px;
     filter: grayscale(100%);
