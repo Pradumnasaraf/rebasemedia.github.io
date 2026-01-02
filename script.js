@@ -1,21 +1,11 @@
 // Mobile Menu Toggle
 const burger = document.querySelector('.burger');
 const nav = document.querySelector('.nav-links');
-const navLinks = document.querySelectorAll('.nav-links li');
 
 burger.addEventListener('click', () => {
     // Toggle Nav
     nav.classList.toggle('active');
     burger.classList.toggle('active');
-    
-    // Animate Links
-    navLinks.forEach((link, index) => {
-        if (link.style.animation) {
-            link.style.animation = '';
-        } else {
-            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
-        }
-    });
 });
 
 // Close mobile menu when clicking outside
@@ -60,25 +50,6 @@ if (contactForm) {
     });
 }
 
-// Responsive Pricing Card Hover Effects
-const pricingCards = document.querySelectorAll('.pricing-card');
-pricingCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        if (window.innerWidth > 768) { // Only apply hover effect on desktop
-            if (!card.classList.contains('featured')) {
-                card.style.transform = 'scale(1.02)';
-            }
-        }
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        if (window.innerWidth > 768) { // Only apply hover effect on desktop
-            if (!card.classList.contains('featured')) {
-                card.style.transform = 'scale(1)';
-            }
-        }
-    });
-});
 
 // Intersection Observer for Animations
 const observerOptions = {
@@ -100,34 +71,54 @@ document.querySelectorAll('section, .service-card, .pricing-card').forEach(eleme
     observer.observe(element);
 });
 
-// Add scroll-based header effect
-const header = document.querySelector('header');
-let lastScroll = 0;
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll <= 0) {
-        header.classList.remove('scroll-up');
-        return;
-    }
-    
-    if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
-        // Scroll Down
-        header.classList.remove('scroll-up');
-        header.classList.add('scroll-down');
-    } else if (currentScroll < lastScroll && header.classList.contains('scroll-down')) {
-        // Scroll Up
-        header.classList.remove('scroll-down');
-        header.classList.add('scroll-up');
-    }
-    lastScroll = currentScroll;
-});
-
 // Handle window resize
 window.addEventListener('resize', () => {
     if (window.innerWidth > 768) {
         nav.classList.remove('active');
         burger.classList.remove('active');
     }
+});
+
+// Enhanced scroll animations with stagger effect
+const observerOptionsEnhanced = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const enhancedObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }, index * 100);
+            enhancedObserver.unobserve(entry.target);
+        }
+    });
+}, observerOptionsEnhanced);
+
+// Observe cards with enhanced animations
+document.querySelectorAll('.service-card, .pricing-card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    enhancedObserver.observe(card);
+});
+
+// Scroll to Top Button
+const scrollToTopBtn = document.getElementById('scrollToTop');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add('visible');
+    } else {
+        scrollToTopBtn.classList.remove('visible');
+    }
+});
+
+scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 }); 
