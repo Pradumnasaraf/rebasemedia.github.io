@@ -845,7 +845,7 @@ footer {
 }
 
 .condition-card {
-  background: var(--card-bg);
+  background-color: var(--card-bg);
   padding: 2rem;
   border-radius: 4px;
 }
